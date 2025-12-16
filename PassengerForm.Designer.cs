@@ -38,19 +38,20 @@
             btnList = new Button();
             btnDelete = new Button();
             btnAdd = new Button();
+            btnUpdate = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = SystemColors.ControlLightLight;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 12);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(397, 254);
             dataGridView1.TabIndex = 0;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.BackgroundColor = SystemColors.ControlLightLight;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // 
             // label1
             // 
@@ -102,7 +103,7 @@
             // 
             // btnList
             // 
-            btnList.Location = new Point(655, 243);
+            btnList.Location = new Point(603, 206);
             btnList.Name = "btnList";
             btnList.Size = new Size(75, 23);
             btnList.TabIndex = 7;
@@ -112,7 +113,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(545, 243);
+            btnDelete.Location = new Point(443, 243);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 8;
@@ -122,7 +123,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(439, 243);
+            btnAdd.Location = new Point(439, 206);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(75, 23);
             btnAdd.TabIndex = 9;
@@ -130,11 +131,22 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
-            // Form1
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(603, 243);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(75, 23);
+            btnUpdate.TabIndex = 10;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
+            // PassengerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(797, 457);
+            Controls.Add(btnUpdate);
             Controls.Add(btnAdd);
             Controls.Add(btnDelete);
             Controls.Add(btnList);
@@ -145,7 +157,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(dataGridView1);
-            Name = "Form1";
+            Name = "PassengerForm";
             Text = "Form1";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -165,5 +177,6 @@
         private Button btnList;
         private Button btnDelete;
         private Button btnAdd;
+        private Button btnUpdate;
     }
 }

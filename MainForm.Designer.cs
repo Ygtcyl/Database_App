@@ -31,13 +31,14 @@
             btnEmployee = new Button();
             btnPassenger = new Button();
             btnSearch = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // btnEmployee
             // 
-            btnEmployee.Location = new Point(23, 21);
+            btnEmployee.Location = new Point(105, 117);
             btnEmployee.Name = "btnEmployee";
-            btnEmployee.Size = new Size(75, 23);
+            btnEmployee.Size = new Size(100, 50);
             btnEmployee.TabIndex = 0;
             btnEmployee.Text = "Employee";
             btnEmployee.UseVisualStyleBackColor = true;
@@ -45,9 +46,9 @@
             // 
             // btnPassenger
             // 
-            btnPassenger.Location = new Point(549, 21);
+            btnPassenger.Location = new Point(597, 117);
             btnPassenger.Name = "btnPassenger";
-            btnPassenger.Size = new Size(75, 23);
+            btnPassenger.Size = new Size(100, 50);
             btnPassenger.TabIndex = 1;
             btnPassenger.Text = "Passenger";
             btnPassenger.UseVisualStyleBackColor = true;
@@ -55,19 +56,32 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(284, 21);
+            btnSearch.Location = new Point(346, 117);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(75, 23);
+            btnSearch.Size = new Size(100, 50);
             btnSearch.TabIndex = 2;
-            btnSearch.Text = "Search";
+            btnSearch.Text = "Search Routes";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
+            // 
+            // label1
+            // 
+            label1.BackColor = SystemColors.ActiveBorder;
+            label1.BorderStyle = BorderStyle.FixedSingle;
+            label1.Font = new Font("Segoe UI", 30F);
+            label1.Location = new Point(12, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(776, 77);
+            label1.TabIndex = 3;
+            label1.Text = "Main Menu";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
             Controls.Add(btnSearch);
             Controls.Add(btnPassenger);
             Controls.Add(btnEmployee);
@@ -82,5 +96,6 @@
         private Button btnEmployee;
         private Button btnPassenger;
         private Button btnSearch;
+        private Label label1;
     }
 }

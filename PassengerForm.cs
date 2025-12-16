@@ -5,20 +5,20 @@ namespace Database_App
     public partial class 
         PassengerForm : Form
     {
-        DbHelper db = new DbHelper(); // Veritabaný yardýmcýmýzý çaðýrdýk
+        DbHelper db = new DbHelper();
 
         public PassengerForm()
         {
             InitializeComponent();
         }
 
-        // Form açýlýnca verileri yükle
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             ListPassengers();
         }
 
-        // LÝSTELEME METODU (SELECT)
+        
         void ListPassengers()
         {
             string sql = "SELECT * FROM Passenger";
@@ -26,18 +26,17 @@ namespace Database_App
             dataGridView1.DataSource = dt;
         }
 
-        // EKLEME BUTONU (INSERT)
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Basit doðrulama
+           
             if (txtPassport.Text == "" || txtName.Text == "")
             {
                 MessageBox.Show("Lütfen Pasaport ve Ýsim alanlarýný doldurun.");
                 return;
             }
 
-            // SQL Sorgusu (Tek týrnaklara dikkat et!)
-            // Not: Trigger sayesinde ismi küçük harfle girsen bile veritabaný büyütecek.
+            
             string sql = $"INSERT INTO Passenger (Passport_Number, Full_Name, Contact_Info) " +
                          $"VALUES ('{txtPassport.Text}', '{txtName.Text}', '{txtContact.Text}')";
 
@@ -45,7 +44,7 @@ namespace Database_App
             {
                 db.ExecuteQuery(sql);
                 MessageBox.Show("Yolcu baþarýyla eklendi!");
-                ListPassengers(); // Listeyi yenile ki yeni kaydý görelim
+                ListPassengers(); 
             }
             catch (Exception ex)
             {
@@ -53,7 +52,6 @@ namespace Database_App
             }
         }
 
-        // SÝLME BUTONU (DELETE)
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -68,7 +66,7 @@ namespace Database_App
                     if (sor == DialogResult.Yes)
                     {
                         db.ExecuteQuery(sql);
-                        ListPassengers(); // Listeyi yenile
+                        ListPassengers(); 
                     }
                 }
                 else
@@ -82,13 +80,33 @@ namespace Database_App
             }
         }
 
-        // LÝSTELEME BUTONU
+        
         private void btnList_Click(object sender, EventArgs e)
         {
             ListPassengers();
         }
 
-        // Tablodan bir satýra týklayýnca bilgileri kutulara doldur (Update için hazýrlýk)
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (txtPassport.Text == "" || txtName.Text == "")
+            {
+                MessageBox.Show("Lütfen Pasaport ve Ýsim alanlarýný doldurun.");
+                return;
+            }
+            string sql = $"UPDATE Passenger SET Full_Name = '{txtName.Text}', Contact_Info = '{txtContact.Text}' " +
+                         $"WHERE Passport_Number = '{txtPassport.Text}'";
+            try
+            {
+                db.ExecuteQuery(sql);
+                MessageBox.Show("Yolcu bilgileri baþarýyla güncellendi!");
+                ListPassengers(); 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
+        }
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

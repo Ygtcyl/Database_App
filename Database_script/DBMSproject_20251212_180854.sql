@@ -11,7 +11,6 @@ SET idle_in_transaction_session_timeout = 0;
 SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
@@ -761,6 +760,8 @@ EXECUTE FUNCTION prevent_flight_delete();
 
 --Insert Operations
 
+--Passangers
+
 INSERT INTO public.passenger (passport_number, full_name, contact_info)
 VALUES
     ('US98273611', 'John Anderson', 'john.anderson@example.com'),
@@ -773,5 +774,85 @@ VALUES
     ('CA33221100', 'Emily Blunt', '+1 416 555 0199'),
     ('BR88552211', 'Carlos Silva', 'carlos.silva@rio.br'),
     ('IT66442288', 'Giulia Rossi', '+39 06 698 12345');
+
+-- Airports
+INSERT INTO public.airport (iata, city) VALUES
+    ('IST', 'Istanbul'),
+    ('JFK', 'New York'),
+    ('LHR', 'London'),
+    ('CDG', 'Paris'),
+    ('HND', 'Tokyo'),
+    ('DXB', 'Dubai'),
+    ('FRA', 'Frankfurt'),
+    ('AMS', 'Amsterdam');
+
+-- Route
+INSERT INTO public.route (origin_airport, destination_airport, duration) VALUES
+    ('IST', 'JFK', '10 hours 30 minutes'),
+    ('JFK', 'IST', '10 hours'),
+    ('IST', 'LHR', '4 hours'),
+    ('LHR', 'IST', '3 hours 45 minutes'),
+    ('IST', 'DXB', '4 hours 30 minutes'),
+    ('HND', 'FRA', '14 hours'),
+    ('CDG', 'JFK', '8 hours 15 minutes');
+
+-- Aircraft
+INSERT INTO public.aircraft (tail_number, model_id) VALUES
+    ('TC-JHK', 'B737'),
+    ('TC-LNA', 'A350'),
+    ('TC-IVR', 'E190'),
+    ('TC-SGN', 'B737'),
+    ('US-NY1', 'A350');
+
+-- Employee
+INSERT INTO public.employee (employee_id, name, hire_date, base_salary, employee_type) VALUES
+    (101, 'Ahmet Yilmaz', '2020-01-15', 85000.00, 'Pilot'),
+    (102, 'Ayse Kaya', '2019-05-20', 90000.00, 'Pilot'),
+    (103, 'Mehmet Demir', '2021-03-10', 45000.00, 'Cabin_Crew'),
+    (104, 'Elif Celik', '2022-07-01', 40000.00, 'Cabin_Crew'),
+    (105, 'John Doe', '2018-11-11', 110000.00, 'Pilot'),
+    (106, 'Sarah Connor', '2021-08-15', 42000.00, 'Cabin_Crew');
+
+-- Pilots
+INSERT INTO public.pilot (employee_id, licensetype, flighthours) VALUES
+    (101, 'ATPL', 3500),
+    (102, 'ATPL', 5200), 
+    (105, 'CPL', 1500);
+
+-- Cabin Crew
+INSERT INTO public.cabin_crew (employee_id, rank) VALUES
+    (103, 'Senior'),
+    (104, 'Junior'),
+    (106, 'Junior');
+
+-- Flights
+INSERT INTO public.flight (flight_id, tail_number, route_id, date) VALUES
+    (1001, 'TC-JHK', 1, '2025-05-01'), 
+    (1002, 'TC-LNA', 3, '2025-05-02'), 
+    (1003, 'TC-IVR', 5, '2025-05-03'), 
+    (1004, 'US-NY1', 7, '2025-05-04'); 
+
+-- Crew Members
+INSERT INTO public.flight_crew (employee_id, flight_id, role) VALUES
+    (101, 1001, 'Captain'),      
+    (103, 1001, 'Head Purser'),  
+    (102, 1002, 'Captain'),      
+    (104, 1002, 'Attendant'),    
+    (105, 1004, 'First Officer');
+
+--Bookings
+
+INSERT INTO public.booking (passport_number, flight_id, travel_class) VALUES
+    ('US98273611', 1001, 'Business'),
+    ('TR11223344', 1001, 'Economy'),
+    ('DE44556677', 1002, 'Economy'),
+    ('JP99887766', 1003, 'Business'),
+    ('UK22334455', 1002, 'Economy'),
+    ('FR77665544', 1004, 'First Class');
+
+
+SELECT setval('public.employee_employee_id_seq', (SELECT MAX(employee_id) FROM public.employee));
+SELECT setval('public.flight_flight_id_seq', (SELECT MAX(flight_id) FROM public.flight));
+SELECT setval('public.route_route_id_seq', (SELECT MAX(route_id) FROM public.route));
 	
 

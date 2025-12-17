@@ -13,16 +13,8 @@ namespace Database_App
         public EmployeeForm()
         {
             InitializeComponent();
-        }
-
-        private void EmployeeForm_Load(object sender, EventArgs e)
-        {
-            LoadEmployees();
-          
-            if (cmbType.Items.Count > 0)
-            {
-                cmbType.SelectedIndex = 0;
-            }
+            DataTable dt = db.GetTable("SELECT * FROM Employee ORDER BY Employee_ID DESC");
+            gridEmployees.DataSource = dt;
         }
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)

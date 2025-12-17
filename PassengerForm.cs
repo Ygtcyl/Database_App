@@ -32,7 +32,7 @@ namespace Database_App
            
             if (txtPassport.Text == "" || txtName.Text == "")
             {
-                MessageBox.Show("Lütfen Pasaport ve Ýsim alanlarýný doldurun.");
+                MessageBox.Show("Please fill in the name and passport fields.");
                 return;
             }
 
@@ -43,12 +43,12 @@ namespace Database_App
             try
             {
                 db.ExecuteQuery(sql);
-                MessageBox.Show("Yolcu baþarýyla eklendi!");
+                MessageBox.Show("Passanger added successfuly!");
                 ListPassengers(); 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hata: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -61,7 +61,7 @@ namespace Database_App
                 {
                     string sql = $"DELETE FROM Passenger WHERE Passport_Number = '{passport}'";
 
-                    DialogResult sor = MessageBox.Show("Silmek istediðine emin misin?", "Uyarý", MessageBoxButtons.YesNo);
+                    DialogResult sor = MessageBox.Show("Are you sure to delete it?", "Warning", MessageBoxButtons.YesNo);
 
                     if (sor == DialogResult.Yes)
                     {
@@ -71,12 +71,12 @@ namespace Database_App
                 }
                 else
                 {
-                    MessageBox.Show("Seçili satýrda geçerli bir pasaport numarasý yok.");
+                    MessageBox.Show("No suitable passport no in selected area.");
                 }
             }
             else
             {
-                MessageBox.Show("Lütfen silinecek satýrý tablodan seçin.");
+                MessageBox.Show("Please select the area to be deleted.");
             }
         }
 
@@ -90,7 +90,7 @@ namespace Database_App
         {
             if (txtPassport.Text == "" || txtName.Text == "")
             {
-                MessageBox.Show("Lütfen Pasaport ve Ýsim alanlarýný doldurun.");
+                MessageBox.Show("Please fill the passport and name areas.");
                 return;
             }
             string sql = $"UPDATE Passenger SET Full_Name = '{txtName.Text}', Contact_Info = '{txtContact.Text}' " +
@@ -98,12 +98,12 @@ namespace Database_App
             try
             {
                 db.ExecuteQuery(sql);
-                MessageBox.Show("Yolcu bilgileri baþarýyla güncellendi!");
+                MessageBox.Show("Passanger info updated successfuly!");
                 ListPassengers(); 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hata: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 

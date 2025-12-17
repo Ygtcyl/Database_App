@@ -52,7 +52,7 @@ namespace Database_App
           
             if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtSalary.Text))
             {
-                MessageBox.Show("Lütfen İsim ve Maaş alanlarını doldurun.");
+                MessageBox.Show("Please fill in the Name and Salary fields..");
                 return;
             }
 
@@ -62,7 +62,7 @@ namespace Database_App
          
             if (!decimal.TryParse(txtSalary.Text, out salary))
             {
-                MessageBox.Show("Lütfen maaş kısmına geçerli bir sayı girin.");
+                MessageBox.Show("Please enter a valid number in the salary section..");
                 return;
             }
 
@@ -120,7 +120,7 @@ namespace Database_App
                         }
 
                         transaction.Commit();
-                        MessageBox.Show("Personel başarıyla kaydedildi!");
+                        MessageBox.Show("Personnel have been successfully registered.!");
 
                        
                         txtName.Clear();
@@ -154,7 +154,7 @@ namespace Database_App
 
                 if (type != "Pilot")
                 {
-                    MessageBox.Show("Bonus hesaplaması sadece Pilotlar içindir!");
+                    MessageBox.Show("Bonus calculation is for Pilots only.!");
                     return;
                 }
 
@@ -165,12 +165,12 @@ namespace Database_App
                 if (dt.Rows.Count > 0)
                 {
                     string bonus = dt.Rows[0][0] != null ? dt.Rows[0][0]!.ToString()! : "0";
-                    MessageBox.Show($"Seçilen pilotun hak ettiği bonus: {bonus} TL");
+                    MessageBox.Show($"The bonus that the selected pilot deserves.: {bonus} TL");
                 }
             }
             else
             {
-                MessageBox.Show("Lütfen listeden bir pilot seçin.");
+                MessageBox.Show("Please select a pilot from the list..");
             }
         }
     }

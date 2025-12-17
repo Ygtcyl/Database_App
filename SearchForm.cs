@@ -39,12 +39,12 @@ namespace Database_App
                 else
                 {
                     gridRoutes.DataSource = null;
-                    MessageBox.Show("Bu havaalanı için kayıtlı uçuş rotası bulunamadı.");
+                    MessageBox.Show("No Route Found.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Arama Hatası: " + ex.Message);
+                MessageBox.Show("Search Error: " + ex.Message);
             }
         }
 
